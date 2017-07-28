@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LibrairieManagement.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +15,10 @@ namespace LibrairieManagement
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            IDatabaseInitializer<BddContext> init = new InitLibrairie();
+            Database.SetInitializer(init);
+            init.InitializeDatabase(new BddContext());
         }
     }
 }

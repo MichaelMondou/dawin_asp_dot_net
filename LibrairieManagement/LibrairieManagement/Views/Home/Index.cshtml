@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<LibrairieManagement.Models.Book>
+@{
     Layout = null;
 }
 
@@ -7,11 +8,34 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Liste des livres</title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-    <div> 
-		<h1>Coucou</h1>
-    </div>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Quantité</th>
+            <th>Modifier</th>
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Date</td>
+                <td>@book.Amount</td>
+                <td>@Html.ActionLink("Modifier", "ModifyBook", new { id = book.Id })</td>
+            </tr>
+        }
+    </table>
 </body>
 </html>
